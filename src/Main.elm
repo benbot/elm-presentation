@@ -2,20 +2,14 @@ module Main exposing (..)
 
 -- Elm Core
 
+import Model exposing (Model)
 import Html exposing (..)
 import Html.App
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Navigation
 import Routing exposing (Route(..))
-
-
--- MODEL
-
-
-type alias Model =
-    { route : Route
-    }
+import Slides.Landing
 
 
 initialModel : Route -> Model
@@ -55,15 +49,10 @@ view : Model -> Html Msg
 view model =
     case model.route of
         LandingSlide ->
-            landingSlide model
+            Slides.Landing.view model
 
         NotFound ->
             div [] [ text "Wrong Slide" ]
-
-
-landingSlide : Model -> Html Msg
-landingSlide modle =
-    div [] [ text "Main Slide" ]
 
 
 

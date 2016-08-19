@@ -27,5 +27,8 @@
     "webpack-merge": "^0.14.0"
   },
   "private": true,
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "node-bourbon": "^4.2.8"
+  }
 }

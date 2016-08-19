@@ -6,6 +6,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var bourbon = require('node-bourbon').includePaths;
 
 // detemine build env
 var TARGET_ENV = process.env.npm_lifecycle_event === 'build' ? 'production' : 'development';
@@ -63,6 +64,9 @@ if (TARGET_ENV === 'development') {
           loaders: ['style', 'css', 'postcss', 'sass']
         }
       ]
+    },
+    sassLoader: {
+      includePaths: [bourbon]
     }
   });
 }

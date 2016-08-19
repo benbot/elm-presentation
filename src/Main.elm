@@ -1,41 +1,51 @@
-
 module Main exposing (..)
 
 -- Elm Core
+
 import Html exposing (..)
 import Html.App
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
+import Navigation
+import Routing exposing (Route(..))
 
 
 -- MODEL
 
 
 type alias Model =
-  {
-  }
-
-
-init : (Model, Cmd Msg)
-init =
-  ( {
+    { route : Route
     }
-  , Cmd.none
-  )
+
+
+initialModel : Route -> Model
+initialModel route =
+    Model route
+
+
+init : Result String Route -> ( Model, Cmd Msg )
+init result =
+    let
+        currentRoute =
+            Routing.routeFromResult result
+    in
+        ( initialModel currentRoute, Cmd.none )
+
 
 
 -- UPDATE
 
 
 type Msg
-  = NoOp
+    = NoOp
 
 
-update : Msg -> Model -> (Model, Cmd Msg)
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-  case msg of
-    NoOp ->
-      (model, Cmd.none)
+    case msg of
+        NoOp ->
+            ( model, Cmd.none )
+
 
 
 -- VIEW
@@ -43,11 +53,18 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-  div
-  []
-  [ img [ src "./img/elm.png" ] []
-  , text "Hello world"
-  ]
+    case model.route of
+        LandingSlide ->
+            landingSlide model
+
+        NotFound ->
+            div [] [ text "Wrong Slide" ]
+
+
+landingSlide : Model -> Html Msg
+landingSlide modle =
+    div [] [ text "Main Slide" ]
+
 
 
 -- SUBSCRIPTIONS
@@ -55,14 +72,24 @@ view model =
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-  Sub.none
+    Sub.none
+
+
+urlUpdate : Result String Route -> Model -> ( Model, Cmd Msg )
+urlUpdate result model =
+    let
+        currentRoute =
+            Routing.routeFromResult result
+    in
+        ( { model | route = currentRoute }, Cmd.none )
 
 
 main : Program Never
 main =
-  Html.App.program
-    { init = init
-    , update = update
-    , view = view
-    , subscriptions = subscriptions
-    }
+    Navigation.program Routing.parser
+        { init = init
+        , update = update
+        , view = view
+        , subscriptions = subscriptions
+        , urlUpdate = urlUpdate
+        }

@@ -10,7 +10,7 @@ import Html.Events exposing (..)
 import Navigation
 import Routing exposing (Route(..))
 import Slides.Landing
-
+import Messages exposing (..)
 
 initialModel : Route -> Model
 initialModel route =
@@ -30,15 +30,15 @@ init result =
 -- UPDATE
 
 
-type Msg
-    = NoOp
-
-
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         NoOp ->
             ( model, Cmd.none )
+        Next slide ->
+            Debug.log "Hello"
+            ( { model | route = slide }, Cmd.none )
+
 
 
 
@@ -56,14 +56,6 @@ view model =
 
 
 
--- SUBSCRIPTIONS
-
-
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    Sub.none
-
-
 urlUpdate : Result String Route -> Model -> ( Model, Cmd Msg )
 urlUpdate result model =
     let
@@ -79,6 +71,6 @@ main =
         { init = init
         , update = update
         , view = view
-        , subscriptions = subscriptions
+        , subscriptions = always Sub.none
         , urlUpdate = urlUpdate
         }

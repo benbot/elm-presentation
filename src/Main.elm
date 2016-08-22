@@ -4,13 +4,11 @@ module Main exposing (..)
 
 import Model exposing (Model)
 import Html exposing (..)
-import Html.App
-import Html.Attributes exposing (..)
-import Html.Events exposing (..)
 import Navigation
 import Routing exposing (Route(..))
-import Slides.Landing
 import Messages exposing (..)
+import Slides exposing (..)
+
 
 initialModel : Route -> Model
 initialModel route =
@@ -35,10 +33,9 @@ update msg model =
     case msg of
         NoOp ->
             ( model, Cmd.none )
-        Next slide ->
-            Debug.log "Hello"
-            ( { model | route = slide }, Cmd.none )
 
+        Next slide ->
+            ( { model | route = slide }, Cmd.none )
 
 
 
@@ -49,11 +46,13 @@ view : Model -> Html Msg
 view model =
     case model.route of
         LandingSlide ->
-            Slides.Landing.view model
+            Slides.landing model
+
+        WhatIsElm ->
+            Slides.whatIsElm model
 
         NotFound ->
             div [] [ text "Wrong Slide" ]
-
 
 
 urlUpdate : Result String Route -> Model -> ( Model, Cmd Msg )

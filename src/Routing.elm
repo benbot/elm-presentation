@@ -7,13 +7,16 @@ import UrlParser exposing (..)
 
 type Route
     = LandingSlide
+    | WhatIsElm
     | NotFound
 
 
 matchers : Parser (Route -> a) a
 matchers =
     oneOf
-        [ format LandingSlide (s "") ]
+        [ format LandingSlide (s "")
+        , format WhatIsElm (s "/functional")
+        ]
 
 
 hashParser : Navigation.Location -> Result String Route

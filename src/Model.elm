@@ -1,7 +1,7 @@
 module Model exposing (..)
 
-import Routing exposing (Route)
+import SlideList exposing (Slide)
 
 
 type alias Model =
-    { route : Route }
+    { route : Slide }

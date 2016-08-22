@@ -1,8 +1,8 @@
 module Messages exposing (..)
 
-import Routing exposing (..)
+import SlideList exposing (Slide)
+
 
 type Msg
-    = NoOp 
-    | Next Route
-
+    = NoOp
+    | Next Slide

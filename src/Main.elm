@@ -4,24 +4,15 @@ module Main exposing (..)
 
 import Model exposing (Model)
 import Html exposing (..)
-import Navigation
-import Routing exposing (Route(..))
+import Html.App as App
 import Messages exposing (..)
-import Slides exposing (..)
+import SlideList exposing (..)
+import Slides
 
 
-initialModel : Route -> Model
-initialModel route =
-    Model route
-
-
-init : Result String Route -> ( Model, Cmd Msg )
-init result =
-    let
-        currentRoute =
-            Routing.routeFromResult result
-    in
-        ( initialModel currentRoute, Cmd.none )
+init : ( Model, Cmd Msg )
+init =
+    ( Model LandingSlide, Cmd.none )
 
 
 
@@ -51,25 +42,18 @@ view model =
         WhatIsElm ->
             Slides.whatIsElm model
 
+        ElmExample ->
+            Slides.example model
+
         NotFound ->
             div [] [ text "Wrong Slide" ]
 
 
-urlUpdate : Result String Route -> Model -> ( Model, Cmd Msg )
-urlUpdate result model =
-    let
-        currentRoute =
-            Routing.routeFromResult result
-    in
-        ( { model | route = currentRoute }, Cmd.none )
-
-
 main : Program Never
 main =
-    Navigation.program Routing.parser
+    App.program
         { init = init
         , update = update
         , view = view
         , subscriptions = always Sub.none
-        , urlUpdate = urlUpdate
         }

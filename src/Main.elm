@@ -7,6 +7,7 @@ import Html exposing (..)
 import Html.App as App
 import Messages exposing (..)
 import SlideList exposing (..)
+import Ports exposing (..)
 import Slides
 
 
@@ -26,7 +27,10 @@ update msg model =
             ( model, Cmd.none )
 
         Next slide ->
-            ( { model | route = slide }, Cmd.none )
+            if slide == ElmExample then
+                ( { model | route = slide }, highlight "" )
+            else
+                ( { model | route = slide }, Cmd.none )
 
 
 
@@ -44,6 +48,12 @@ view model =
 
         ElmExample ->
             Slides.example model
+
+        StepBack ->
+            Slides.stepBack model
+
+        ScalesWell ->
+            Slides.scalesWell model
 
         NotFound ->
             div [] [ text "Wrong Slide" ]

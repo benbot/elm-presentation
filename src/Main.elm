@@ -9,6 +9,8 @@ import Messages exposing (..)
 import SlideList exposing (..)
 import Ports exposing (..)
 import Slides
+import Debug
+import Task
 
 
 init : ( Model, Cmd Msg )
@@ -26,8 +28,8 @@ update msg model =
         NoOp ->
             ( model, Cmd.none )
 
-        Next slide ->
-            if slide == ElmExample then
+        Next slide render ->
+            if render then
                 ( { model | route = slide }, highlight "" )
             else
                 ( { model | route = slide }, Cmd.none )
@@ -49,11 +51,41 @@ view model =
         ElmExample ->
             Slides.example model
 
+        HelloWorld ->
+            Slides.helloWorld model
+
         StepBack ->
             Slides.stepBack model
 
         ScalesWell ->
-            Slides.scalesWell model
+            Slides.stepBack model
+
+        Traditional ->
+            Slides.traditional model
+
+        RealLife ->
+            Slides.realLife model
+
+        Brain ->
+            Slides.brain model
+
+        BackToElm ->
+            Slides.backToElm model
+
+        AliasTypes ->
+            Slides.aliasTypes model
+
+        BasicallyShortcuts ->
+            Slides.basicallyShortcuts model
+
+        UnionTypes ->
+            div [] []
+
+        BetterExplination ->
+            div [] []
+
+        DataBoom ->
+            div [] []
 
         NotFound ->
             div [] [ text "Wrong Slide" ]

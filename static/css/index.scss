@@ -18,7 +18,6 @@
   text-align: center;
   flex-direction: column;
   justify-content: center;
-  align-centent: center;
 }
 
 .logo {
@@ -31,4 +30,23 @@
   height: 100vh;
   font-size: 3em;
   padding-left: 20%;
+}
+
+.smaller#elm {
+  font-size: 2em;
+}
+
+img {
+  padding-left: 10%;
+  width: 80%;
+  min-height: 123px;
+}
+
+.image-header {
+  padding-top: .5em;
+  padding-bottom: .5em;
+}
+
+.too-tall {
+  height: 85vh;
 }

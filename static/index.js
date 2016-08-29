@@ -1,7 +1,7 @@
 
 // pull in desired CSS/SASS files
 require('./css/index.scss');
-require('./css/hljs/solarized-dark.css');
+require('./css/hljs/solarized-light.css');
 
 // inject bundled Elm app into div#main
 

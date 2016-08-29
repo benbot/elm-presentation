@@ -5,4 +5,4 @@ import SlideList exposing (Slide)
 
 type Msg
     = NoOp
-    | Next Slide
+    | Next Slide Bool

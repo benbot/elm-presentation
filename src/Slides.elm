@@ -12,7 +12,7 @@ import SlideList exposing (..)
 
 landing : Model -> Html Msg
 landing model =
-    div [ onClick (Next WhatIsElm), class "main" ]
+    div [ onClick (Next ElmExample), class "main" ]
         [ h1 [ class "header" ] [ text "Fun Functional Frontends" ]
         , div [ class "logo" ] [ logo ]
         , h1 [] [ text "in Elm" ]
@@ -27,6 +27,21 @@ whatIsElm model =
 
 example : Model -> Html Msg
 example model =
+    pre [ onClick (Next Broke), id "elm" ]
+        [ code []
+            [ text """
+module Main exposing (..)
+
+import Html exposing (Html, div, text)
+
+main : Html a
+main =
+  """
+            ]
+        ]
+
+
+broke model =
     pre [ onClick (Next StepBack), id "elm" ]
         [ code []
             [ text """

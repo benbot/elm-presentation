@@ -7,4 +7,5 @@ type Slide
     | ElmExample
     | StepBack
     | ScalesWell
+    | Broke
     | NotFound

@@ -55,6 +55,9 @@ view model =
         ScalesWell ->
             Slides.scalesWell model
 
+        Broke ->
+            Slides.broke model
+
         NotFound ->
             div [] [ text "Wrong Slide" ]
 

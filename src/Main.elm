@@ -79,16 +79,10 @@ view model =
             Slides.basicallyShortcuts model
 
         UnionTypes ->
-            div [] []
+            Slides.unionTypes model
 
-        BetterExplination ->
+        InClosing ->
             div [] []
-
-        DataBoom ->
-            div [] []
-
-        NotFound ->
-            div [] [ text "Wrong Slide" ]
 
 
 main : Program Never

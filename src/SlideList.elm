@@ -15,6 +15,4 @@ type Slide
     | AliasTypes
     | BasicallyShortcuts
     | UnionTypes
-    | BetterExplination
-    | DataBoom
-    | NotFound
+    | InClosing

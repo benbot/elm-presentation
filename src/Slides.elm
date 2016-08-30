@@ -112,7 +112,36 @@ type OtherModel =
 
 basicallyShortcuts : Model -> Html Msg
 basicallyShortcuts model =
-    div [ class "main" ]
+    div [ class "main", onClick (Next UnionTypes True) ]
         [ h3 [] [ text "Generally used for defining your app's model" ]
         , h3 [] [ text "which is the state for your entire app" ]
+        ]
+
+
+unionTypes : Model -> Html Msg
+unionTypes model =
+    pre [ id "elm", class "smaller" ]
+        [ code []
+            [ text """
+module Main exposing (..)
+
+import Html exposing (..)
+
+type Msg
+  = NoOp
+  | Landing
+  | Welcome String
+
+update : Msg -> Html a
+update msg =
+  case msg of
+    NoOp ->
+      div [] []
+    Landing ->
+      h1 [] [ text "Hello" ]
+    Welcome name ->
+      h2 [] [ text ("Hello" ++ name)]
+
+  """
+            ]
         ]
